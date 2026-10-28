@@ -1,0 +1,67 @@
+# Canonical Routing Manifest — skill-based-execution (SBE)
+#
+# Sole source of exact task-route data. SBE is stateless: always_read stays
+# empty (workflows load knowledge at evidence and phase boundaries), there are
+# no domain overlays and no path resolution — this skill root is the only root.
+# SKILL.md's ROUTING_SUMMARY block is hand-maintained and kept in sync with
+# this file by scripts/smoke-test.sh.
+
+always_read: []
+
+tasks:
+  - id: fix-bug
+    labels: { en: Fix bug / diagnose unexpected behavior, zh: 修 bug / 排查异常 }
+    workflow: workflows/fix-bug.md
+    trigger_examples:
+      - 这个接口报错了
+      - 帮我看下这个异常
+      - 测试挂了
+      - fix this failing test
+  - id: change-managed
+    labels: { en: Add / refactor / optimize non-bug behavior, zh: 新增 / 重构 / 优化非 bug 行为 }
+    workflow: workflows/change-managed.md
+    trigger_examples:
+      - 帮我加一个功能
+      - 优化这个模块
+      - add this feature
+      - refactor this flow
+  - id: refactor-fanout
+    labels: { en: Same-shape refactor across many usage points, zh: 跨多处的同型重构(改名 / 改签名 / 迁移) }
+    workflow: workflows/refactor-fanout.md
+    trigger_examples:
+      - 把这个函数改名,所有地方都跟着改
+      - rename X across the codebase
+      - 这个 API 签名改了,所有 caller 也改一下
+  - id: define-requirement
+    labels: { en: Define or clarify desired behavior, zh: 定义 / 澄清需求与目标行为 }
+    workflow: workflows/define-requirement.md
+    trigger_examples:
+      - 先讨论需求,不要写 Plan 或代码
+      - 先帮我把这个需求问清楚
+      - brainstorm the desired behavior before planning
+  - id: plan-feature
+    labels: { en: Plan implementation for a confirmed requirement, zh: 基于已确认需求制定实现计划 }
+    workflow: workflows/plan-feature.md
+    trigger_examples:
+      - 需求已经确认,制定实现 Plan
+      - 基于这个需求规划怎么改代码
+      - plan the implementation for this confirmed requirement
+  - id: receiving-review
+    labels: { en: Act on code review feedback, zh: 处理代码评审意见 }
+    workflow: workflows/receiving-review.md
+    trigger_examples:
+      - 帮我看看这些评审意见
+      - reviewer 提了几个问题,处理一下
+      - address this PR review feedback
+  - id: update-upstream
+    labels: { en: Update from skill-based-architecture upstream, zh: 从上游 skill-based-architecture 更新本 skill }
+    workflow: workflows/update-upstream.md
+    trigger_examples:
+      - 上游项目更新了,帮我更新一下 SBE
+      - 参考 skill-based-architecture 新版本优化
+      - refresh SBE from upstream
+  - id: other
+    labels: { en: Other / unlisted task, zh: 其他 / 未列出的任务 }
+    workflow: workflows/task-execution.md
+    trigger_examples:
+      - 其他没有明确路由的任务

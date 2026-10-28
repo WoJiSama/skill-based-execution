@@ -1,0 +1,7 @@
+# Records which upstream skill-based-architecture sync point SBE is on.
+# - workflows/update-upstream.md sets synced_sha (step 8) after each refresh.
+# - The upstream sources were vendored from the working tree of
+#   ~/IdeaProjects/skill-based-architecture, verified to match this commit.
+upstream: https://github.com/WoJiSama/skill-based-architecture
+synced_sha: e5d2da58ec6812b4615d39869f630cfd20fd58a5
+synced_date: 2026-10-28

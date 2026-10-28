@@ -1,0 +1,71 @@
+# Provenance manifest: where every mechanism file comes from in the SBA
+# upstream (templates/skill/ at the synced_sha recorded in .upstream-sync).
+#
+# vendor  — byte-identical upstream mechanism; update-upstream may overwrite
+#           it mechanically when the local copy matches the recorded base.
+# adapted — SBE-owned rewrite derived from the listed upstream source;
+#           update-upstream merges semantically, never overwrites.
+# local   — SBE-original; no upstream counterpart.
+#
+# Consciously NOT carried from upstream (memory / embedding machinery):
+#   read ledgers (Read-Reuse), SessionStart hooks, memory routing,
+#   rule-update/* knowledge reconciliation, update-rules, maintain-docs,
+#   profile-project, domain routing, thin shells / harness registration,
+#   sync-routing generation, subagent workflows, composite-plan machinery.
+# Do not add these back; scripts/smoke-test.sh guards their markers.
+
+vendor:
+  - { path: protocol-blocks/ambiguous-request-gate.md, source: templates/skill/protocol-blocks/ambiguous-request-gate.md }
+  - { path: protocol-blocks/change-contract.md, source: templates/skill/protocol-blocks/change-contract.md }
+  - { path: protocol-blocks/external-delivery-verification.md, source: templates/skill/protocol-blocks/external-delivery-verification.md }
+  - { path: protocol-blocks/reboot-check.md, source: templates/skill/protocol-blocks/reboot-check.md }
+
+adapted:
+  - path: workflows/task-execution.md
+    source: templates/skill/workflows/task-execution.md
+    notes: stateless — dropped composite-plan handoff, verified-failure durable handoff, domain routing, subagent workflow refs
+  - path: workflows/task-closure.md
+    source: templates/skill/workflows/task-closure.md
+    notes: stateless — dropped rule-update/plan-knowledge-closure/maintain-docs machinery; AAR reports lessons instead of persisting
+  - path: workflows/fix-bug.md
+    source: templates/skill/workflows/fix-bug.md
+    notes: dropped domain routing and business-truth/verified-failure record inputs
+  - path: workflows/change-managed.md
+    source: templates/skill/workflows/change-managed.md
+    notes: dropped domain routing, edit-templates, permission-model refs
+  - path: workflows/refactor-fanout.md
+    source: templates/skill/workflows/refactor-fanout.md
+    notes: subagent dispatch made harness-optional with the same per-batch contract
+  - path: workflows/define-requirement.md
+    source: templates/skill/workflows/define-requirement.md
+    notes: durable artifacts follow the target project's own docs convention; no local archive contract assumed
+  - path: workflows/plan-feature.md
+    source: templates/skill/workflows/plan-feature.md
+    notes: dropped domain workflow / business-truth refs; condensed dossier carriers to docs/plans default; DB gate condensed
+  - path: workflows/plan-large.md
+    source: templates/skill/workflows/plan-large.md
+    notes: business-model phrasing generalized
+  - path: workflows/receiving-review.md
+    source: templates/skill/workflows/receiving-review.md
+    notes: dropped business-rule replay refs
+  - path: protocol-blocks/source-localization.md
+    source: templates/skill/protocol-blocks/source-localization.md
+    notes: persisted technical maps removed; Session-only
+  - path: protocol-blocks/user-decision-drift.md
+    source: templates/skill/protocol-blocks/user-decision-drift.md
+    notes: maintain-docs source-preservation ref inlined into step 4
+  - path: rules/change-discipline.md
+    source: templates/skill/rules/change-discipline.md
+    notes: project-rules/coding-standards preload replaced by "target project's own declared rules"
+  - path: rules/agent-behavior.md
+    source: downstream chaos skill (apps/chaos/skills/chaos/rules/agent-behavior.md)
+    notes: generalized — dropped chaos contracts (permission model, tests-as-spec, dual-root paths), subagent workflow refs
+
+local:
+  - SKILL.md
+  - routing.yaml
+  - workflows/update-upstream.md
+  - conformance.yaml
+  - scripts/smoke-test.sh
+  - scripts/check-conformance.sh
+  - scripts/install.sh

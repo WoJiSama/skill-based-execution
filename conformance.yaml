@@ -1,0 +1,157 @@
+# Behavior anchors for skill-based-execution (SBE).
+# Unlike an embedded downstream (which anchors to the upstream template
+# contract), SBE anchors to its own stateless adaptation: every phrase below
+# is load-bearing behavior that must survive any refactor or upstream refresh.
+# scripts/check-conformance.sh validates this file.
+# Bumping rule: when update-upstream.md adopts a new mandatory mechanism,
+# add its anchor phrases here in the same change.
+
+required_sections:
+  - file: SKILL.md
+    must_contain:
+      - "re-match one route before acting"
+      - "requirement-ready -> Task Anchor -> implementation-ready -> Native Plan -> mutation"
+      - "A project that routes the task through its own skill always wins"
+      - "Stateless by design"
+      - "writes no gotchas, references, rules, or records into the target project"
+      - "Default is empty"
+      - "<always-applicable>"
+      - "<task-routing>"
+    must_not_contain:
+      - "READ_REUSE"
+      - "读账本"
+      - "SessionStart"
+      - "domain-routing"
+      - "rule-update/"
+      - "sync-routing"
+  - file: routing.yaml
+    must_contain:
+      - "always_read: []"
+      - "- id: fix-bug"
+      - "- id: change-managed"
+      - "- id: refactor-fanout"
+      - "- id: define-requirement"
+      - "- id: plan-feature"
+      - "- id: receiving-review"
+      - "- id: update-upstream"
+      - "- id: other"
+  - file: workflows/task-execution.md
+    must_contain:
+      - "## Task Classifier"
+      - "## Evidence and Knowledge Gate"
+      - "## Task Anchor"
+      - "### Presentation Gate"
+      - "Evaluate **Structured Brief first**"
+      - "do not collapse the brief into prose"
+      - "## Workflow Boundary"
+      - "## Database-Structure Mutation Gate"
+      - "## Recitation Loop"
+      - "## Failure Handling"
+      - "## Execution Loop"
+      - "## User Decision Drift Gate"
+      - "## New Message Gate"
+      - "## Exit To Closure"
+      - "risk-sized Task Anchor in current-Session state"
+      - "no task state is stored between Sessions"
+      - "does not create durable planning files or recover task state across Sessions"
+      - "optional accelerators only"
+    must_not_contain:
+      - "READ_REUSE"
+      - "读账本"
+      - "SessionStart"
+      - "domain-routing"
+      - "rule-update/"
+      - "verified-failure.md"
+  - file: workflows/task-closure.md
+    must_contain:
+      - "## Entry Gate"
+      - "## Trigger Policy"
+      - "## Delivery and Completion Gate"
+      - "### Rationalizations to Reject"
+      - "### Red Flags"
+      - "## After-Action Review"
+      - "`Ready for Delivery` is a checkpoint, not task completion"
+      - "never written into the target project"
+      - "A fresh command against a stale artifact is not fresh evidence"
+      - "historical red evidence remains valid"
+      - "writing gotchas, references, rules, ledgers, or any record into the target project"
+    must_not_contain:
+      - "READ_REUSE"
+      - "读账本"
+      - "rule-update/"
+      - "plan-knowledge-closure"
+      - "maintain-docs"
+  - file: workflows/fix-bug.md
+    must_contain:
+      - "Design-or-defect gate"
+      - "IMPLEMENTATION_BUG"
+      - "DESIGN_CHANGE"
+      - "INSUFFICIENT_CONTEXT"
+      - "Repair-depth gate"
+      - "red→green verification"
+  - file: workflows/change-managed.md
+    must_contain:
+      - "implementation-ready"
+      - "Map semantic fan-out"
+  - file: workflows/define-requirement.md
+    must_contain:
+      - "requirement-ready"
+      - "Decision Authority And Source Fidelity"
+      - "Artifact Pressure Gate"
+  - file: workflows/plan-feature.md
+    must_contain:
+      - "implementation-ready"
+      - "Complexity Gate"
+      - "Database-Change Artifact Gate"
+      - "Proof Design"
+  - file: workflows/plan-large.md
+    must_contain:
+      - "Multi-Perspective Analysis"
+      - "Angle Contract"
+  - file: workflows/refactor-fanout.md
+    must_contain:
+      - "## Admission"
+      - "Phase 3 — Integrate and Verify"
+  - file: workflows/receiving-review.md
+    must_contain:
+      - "Read the whole review before acting on any item"
+  - file: workflows/update-upstream.md
+    must_contain:
+      - "adapted downstream"
+      - "Removed machinery stays removed"
+  - file: protocol-blocks/change-contract.md
+    must_contain:
+      - "requirement-incomplete -> requirement-ready"
+      - "implementation-ready"
+  - file: protocol-blocks/source-localization.md
+    must_contain:
+      - "Adaptive Evidence Funnel"
+      - "Session-only"
+  - file: protocol-blocks/ambiguous-request-gate.md
+    must_contain:
+      - "Implementation-Fact Question Gate"
+  - file: protocol-blocks/user-decision-drift.md
+    must_contain:
+      - "Authority: user-confirmed"
+  - file: protocol-blocks/external-delivery-verification.md
+    must_contain:
+      - "requested terminal state"
+      - "premise-changed"
+  - file: protocol-blocks/reboot-check.md
+    must_contain:
+      - "The 5 questions"
+  - file: rules/agent-behavior.md
+    must_contain:
+      - "## 1. Think Before Coding"
+      - "## 2. Semantic Completeness Before Minimality"
+      - "## 3. Surgical Changes"
+      - "## 4. Minimal Context, Sufficient Evidence"
+      - "## 5. Goal-Driven, Risk-Sized Execution"
+      - "## 6. Delegate Only for Net Benefit"
+      - "## 7. Response Discipline"
+      - "Done Contract"
+  - file: rules/change-discipline.md
+    must_contain:
+      - "Product Development"
+      - "Operational Stabilization"
+      - "never writes any into the target project"
