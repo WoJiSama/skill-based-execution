@@ -18,7 +18,7 @@ SBE is an **adapted downstream**, not a byte-identical one: SBA embeds architect
 
 ## Procedure
 
-1. **Preflight** — `git status --short`; note existing local changes and do not revert them. Run `bash scripts/smoke-test.sh` and `bash scripts/check-conformance.sh` first so failures introduced by this refresh are distinguishable from pre-existing ones.
+1. **Preflight** — `git status --short`; note existing local changes and do not revert them. Run `bash scripts/upstream-status.sh` (add `--upstream <path>` for a non-default local SBA checkout) to see how far behind upstream this skill is and get the change-entry work-list. Run `bash scripts/smoke-test.sh` and `bash scripts/check-conformance.sh` first so failures introduced by this refresh are distinguishable from pre-existing ones.
 2. **Fetch upstream** — clone or update a local copy:
    ```bash
    tmp="$(mktemp -d)"

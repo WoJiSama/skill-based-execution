@@ -8,8 +8,9 @@ description: >
   "加个功能", "重构一下", "处理评审意见". Also use when the user names
   "skill-based-execution" or "SBE". Do NOT activate when the working project
   already routes the task through its own skill — defer to it. This skill
-  carries task execution and closure discipline only: it keeps no memory,
-  records nothing into the target project, and never restructures a project.
+  carries task execution and closure discipline only: it keeps no session
+  memory, writes no agent-initiated records into the target project
+  (user-requested deliverables excluded), and never restructures a project.
 ---
 
 # Skill-Based Execution (SBE)
@@ -28,7 +29,8 @@ Default is empty. Workflows load rules at their own boundaries; do not preload.
 
 - Re-read only what changed or was lost. If you cannot tell whether context was compacted, re-read the current workflow and decision-relevant evidence.
 - Use evidence-driven context — start with the selected workflow and the smallest source slice that can decide the next action. Only one clear read-only or fixed-contract action with no new desired behavior stays Simple; any request that adds or changes user-visible behavior, a business flow/state, or an external contract follows the ordered progression `requirement-ready -> Task Anchor -> implementation-ready -> Native Plan -> mutation`, owned by [`workflows/task-execution.md`](workflows/task-execution.md). An incomplete Requirement returns current understanding, real risk/conflict, and the minimum normative question instead of a Plan.
-- Modifying workflows read [`rules/change-discipline.md`](rules/change-discipline.md) before the first mutation; [`rules/agent-behavior.md`](rules/agent-behavior.md) is the behavioral default set; [`workflows/task-closure.md`](workflows/task-closure.md) loads only when completion begins.
+- After classifying a task as non-Simple, read [`rules/agent-behavior.md`](rules/agent-behavior.md) before the first action. Modifying workflows read [`rules/change-discipline.md`](rules/change-discipline.md) before the first mutation; [`workflows/task-closure.md`](workflows/task-closure.md) loads only when completion begins.
+- Before final validation or commit after a long or interrupted task, run [`protocol-blocks/reboot-check.md`](protocol-blocks/reboot-check.md): restate the original user constraints and chosen route; if you cannot, re-read the request, current workflow, and decision-relevant evidence before proceeding.
 - Vague wording is a signal, not a blocker: inspect the smallest read-only evidence first; see `protocol-blocks/ambiguous-request-gate.md`.
 
 </always-applicable>
@@ -52,21 +54,27 @@ Action hook, not a route catalog. Exact route data lives only in `routing.yaml`:
 
 </task-routing>
 
+## Known Gotchas
+
+<!-- Starts empty by design: entries come only from real failures via task-closure AAR, written as symptom → cause → fix. Do not prefill imagined ones. -->
+- <!-- empty -->
+
 ## Boundaries
 
-- A project that routes the task through its own skill always wins; SBE defers and does not compete or duplicate.
-- SBE owns execution discipline only. It writes no gotchas, references, rules, or records into the target project — durable project knowledge is the project's own skill's job.
+- A project that routes the task through its own skill always wins. When SBE activates and the project's own skill covers the task, read that skill's routing manifest and follow its route for the whole task: SBE stops being the owner — no re-routing, no layering its protocols on top, no duplicating the project's workflows.
+- SBE owns execution discipline only. It writes no agent-initiated gotchas, references, rules, or knowledge records into the target project — durable project knowledge is the project's own skill's job. A user-requested deliverable (e.g. a plan/PRD document the user asked for) is not such a record.
 - Stateless by design: no read ledgers, no session-memory files, no cross-session task state. Task state lives only in the current Session's Task Anchor and native Plan.
 - Subagents are optional accelerators; correctness and completion never depend on them.
 
 ## Rule Priority
 
-1. The target project's own skill and declared rules (when present)
-2. This `SKILL.md`
-3. `routing.yaml`
-4. `rules/*`
-5. The matched route's `workflow`
-6. The real code
+1. The current user's explicit request in this conversation
+2. The target project's own skill and declared rules (when present)
+3. This `SKILL.md`
+4. `routing.yaml`
+5. `rules/*`
+6. The matched route's `workflow`
+7. The real code
 
 ## Self-Maintenance
 

@@ -29,7 +29,7 @@ adapted:
     notes: stateless — dropped rule-update/plan-knowledge-closure/maintain-docs machinery; AAR reports lessons instead of persisting
   - path: workflows/fix-bug.md
     source: templates/skill/workflows/fix-bug.md
-    notes: dropped domain routing and business-truth/verified-failure record inputs
+    notes: dropped domain routing and business-truth/verified-failure record inputs; classification INSUFFICIENT_BUSINESS_CONTEXT renamed to INSUFFICIENT_CONTEXT
   - path: workflows/change-managed.md
     source: templates/skill/workflows/change-managed.md
     notes: dropped domain routing, edit-templates, permission-model refs
@@ -68,4 +68,5 @@ local:
   - conformance.yaml
   - scripts/smoke-test.sh
   - scripts/check-conformance.sh
+  - scripts/upstream-status.sh
   - scripts/install.sh

@@ -1,6 +1,6 @@
 # Agent Behavior — Defaults
 
-适用于所有任务的默认行为。目标项目自有 skill 存在时，以其为准。本文件按需读取（改动类任务在首次变更前加载），不作为 Always Read 预载。
+适用于所有任务的默认行为。目标项目自有 skill 存在时，以其为准。非 Simple 任务在首个动作前由 Session Discipline 触发加载，不作为 Always Read 预载。
 
 ## 1. Think Before Coding
 

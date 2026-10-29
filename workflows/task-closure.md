@@ -57,7 +57,7 @@ Closure never grants commit, push, MR, deploy, publish, or other side-effect aut
 
 - claiming “done/should pass” without reading a fresh exit code, or treating that exit code as sufficient completion evidence by itself;
 - claiming completion from `Ready for Delivery` or from an unverified precursor such as a pushed branch;
-- writing gotchas, references, rules, ledgers, or any record into the target project;
+- writing agent-initiated gotchas, references, rules, ledgers, or knowledge records into the target project (a user-requested deliverable is not one);
 - treating optional delegation or future infrastructure as a completion requirement.
 
 ## After-Action Review

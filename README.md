@@ -45,7 +45,7 @@ routing.yaml        canonical task routes (always_read stays empty)
 rules/              agent-behavior (defaults), change-discipline (mutation safety)
 workflows/          task-execution / task-closure + task workflows + update-upstream
 protocol-blocks/    shared gates consumed by workflows
-scripts/            smoke-test.sh (structure), check-conformance.sh (anchors), install.sh
+scripts/            smoke-test.sh (structure), check-conformance.sh (anchors), upstream-status.sh (behind-check), install.sh
 conformance.yaml    behavior anchors this skill must keep
 ```
 
