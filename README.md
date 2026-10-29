@@ -10,6 +10,8 @@ SBA  (upstream)              embeds skill architecture INTO a repository
 
 SBA 把架构装进仓库；SBE 把执行纪律装进 skill 本身，随人走而不是随仓库走。装一次（`~/.agents/skills/`），在**任何**没有自有 skill 架构的项目里生效：一次性任务、不归你管/不能重构结构的仓库、还没做 SBA 迁移的项目。
 
+需要完整形态时请回到上游 [SBA](https://github.com/WoJiSama/skill-based-architecture)：它是全面版——把 skill 架构嵌入仓库本身，提供项目自有路由、规则、gotchas、代码事实层与团队经验沉淀。SBE 是这套纪律的无状态简化版。
+
 ## What it carries / what it deliberately dropped
 
 **Carried** (generic skeleton from SBA templates):
