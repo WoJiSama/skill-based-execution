@@ -18,6 +18,7 @@ Apparent code locality never makes requirement-bearing work Simple. If a legitim
 - Start with the selected workflow and the smallest source/runtime slice that can resolve the current decision. Requirement-bearing changes always evaluate [`change-contract.md`](../protocol-blocks/change-contract.md); clear input may satisfy `requirement-ready` immediately without questions, while a normative gap enters [`define-requirement.md`](define-requirement.md). After readiness, create the Task Anchor projection, then consume [`source-localization.md`](../protocol-blocks/source-localization.md) for technical ownership and complete Implementation Binding. Fixed-contract Simple tasks keep the direct fast path. Expand one target at a time only when ownership is unclear, evidence conflicts, a contract/generated/shared boundary is crossed, or the current premise fails.
 - For every bounded search/read, name the current question, the result that would select the next read, and the evidence boundary that would make the result complete enough for this decision. Ranked, sampled, truncated, or Top-N output is candidate evidence, not an exhaustive inventory; expose the cap and the uninspected remainder before making a completeness claim.
 - Treat read volume and elapsed time as diagnostic evidence, never correctness gates. Validate at the cheapest level that can falsify the material risk and stop when the declared evidence contract passes.
+- When required acceptance depends on an external runtime, identity, or tool capability, check its smallest useful operation through the actual executor and permission context before dependent work. A separate client's success does not establish that executor's access. Keep this conditional on the task's evidence needs; it is not a universal environment checklist.
 - Subagents, when the harness offers them, are optional accelerators only: outputs are candidate evidence until the main agent reviews them and runs the owning step's check; correctness and completion never depend on them.
 
 ## Task Anchor
@@ -79,6 +80,8 @@ If the Goal or Done When can no longer be stated accurately from the current Ses
 ## Failure Handling
 
 When a command, test, runtime check, delivery action, or implementation premise fails, keep one Session-only failure candidate with the affected boundary and current evidence. Retries inside the same unresolved task remain one occurrence. Do not persist the raw message or first hypothesis, and write no record into the target project; report proven lessons to the user at Closure. If diagnosis, repeated repair, or cross-step verification makes a Simple task nontrivial, reclassify it as Managed and preserve the candidate in the Task Anchor.
+
+Locate the failed boundary before choosing the next action: application behavior, runtime/data, tool permission, identity, or transport. Retry only with a changed condition or a new diagnostic question that can change the decision; do not repeat an unchanged full task or unrelated discovery. Preserve checks whose inputs remain valid and retry only the affected boundary after recovery. If required access remains unavailable, report the blocker and unmet acceptance; independent useful work may continue, but the blocked scenario stays unverified.
 
 ## Execution Loop
 

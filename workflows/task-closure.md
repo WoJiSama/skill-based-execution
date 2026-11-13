@@ -29,10 +29,16 @@ If implementation work or non-delivery evidence is missing, return to [`task-exe
    - packaged/release/deploy evidence only when that chain changed or the user requires it.
 
    Stop when the bound evidence proves the contract; escalate only when a check fails, the risk crosses another boundary, or a stated uncertainty remains. Test count is not evidence quality. A fresh command against a stale artifact is not fresh evidence. For a defect repair, report the recorded red reproduction → same-case green proof; historical red evidence remains valid and is not a reason to rewind or rerun the broken version.
+
+   Apply [Evidence Scope](#evidence-scope) when reporting what these checks prove.
 3. **Account for failures** — enumerate every command, test, runtime, delivery, or premise failure whose root cause was proven during the task, with its repair and proof. Report them in the final message; write no record into the target project.
 4. **Run the AAR below.** A yes is reported to the user with a concrete destination suggestion (the project's own skill, when one owns the task domain); SBE records nothing on its own initiative.
 5. **Run conditional integrity work (SBE's own files only)** — a change to this skill's routing, SKILL.md, workflows, rules, or scripts must also pass `scripts/smoke-test.sh` (structure, budgets, routing↔SKILL sync, links) and `scripts/check-conformance.sh` (behavior anchors) before readiness.
 6. **Declare readiness** — only after Steps 1–5 pass, name any already-authorized delivery action, expected artifact, and exact verification. `Ready for Delivery` is a checkpoint, not task completion.
+
+### Evidence Scope
+
+Preserve the executor, artifact/version, environment/identity, and substituted dependencies when they limit the claim. Mocked dependencies prove behavior only under that contract; an independent replay proves what that executor observed. When acceptance requires a specified agent or executor to finish, substitute evidence is supplementary and its required run remains unverified. Keep these qualifications with the result, using Session evidence rather than a new project record. Read-only workflows may consume this section without activating Closure.
 
 ### Delivery and Completion Gate
 

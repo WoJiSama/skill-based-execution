@@ -60,6 +60,9 @@ required_sections:
       - "no task state is stored between Sessions"
       - "does not create durable planning files or recover task state across Sessions"
       - "optional accelerators only"
+      - "through the actual executor and permission context"
+      - "Retry only with a changed condition or a new diagnostic question"
+      - "Preserve checks whose inputs remain valid"
     must_not_contain:
       - "READ_REUSE"
       - "读账本"
@@ -79,6 +82,9 @@ required_sections:
       - "never written into the target project"
       - "A fresh command against a stale artifact is not fresh evidence"
       - "historical red evidence remains valid"
+      - "Preserve the executor, artifact/version, environment/identity, and substituted dependencies"
+      - "substitute evidence is supplementary"
+      - "### Evidence Scope"
       - "writing agent-initiated gotchas, references, rules, ledgers, or knowledge records into the target project"
     must_not_contain:
       - "READ_REUSE"
@@ -94,6 +100,10 @@ required_sections:
       - "INSUFFICIENT_CONTEXT"
       - "Repair-depth gate"
       - "red→green verification"
+      - "exit the repair path without editing"
+      - "replay the original scenario through the user's entry"
+      - "An unavailable check leaves the scenario unverified"
+      - "task-closure.md#evidence-scope"
   - file: workflows/change-managed.md
     must_contain:
       - "implementation-ready"
@@ -124,6 +134,9 @@ required_sections:
     must_contain:
       - "adapted downstream"
       - "Removed machinery stays removed"
+      - "exact `target_sha`"
+      - "partial refresh or worktree-candidate port leaves `synced_sha` unchanged"
+      - "preserve the local `sync-manifest.yaml` selection"
   - file: protocol-blocks/change-contract.md
     must_contain:
       - "requirement-incomplete -> requirement-ready"

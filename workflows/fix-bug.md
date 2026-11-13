@@ -22,28 +22,29 @@ Replay the relevant user-confirmed decisions before defining expected behavior o
 
 1. Restate the observed behavior, affected scope, and expected result. Before the first mutation, read [`change-discipline.md`](../rules/change-discipline.md).
 2. Classify with the Design-or-defect gate.
-3. Reproduce the defect with a failing automated check for the reported reason; if automation is impossible, give repeatable manual steps and why.
+3. Check the reported scenario on the current artifact before deciding whether a repair is needed. If it passes under the relevant conditions, exit the repair path without editing and report the version, conditions, observed result, and zero code changes; do not manufacture a failing check or continue Steps 4–7. Otherwise reproduce the defect with a failing automated check for the reported reason; if automation is impossible, give repeatable manual steps and why. An unavailable check leaves the scenario unverified, not passing.
 4. Trace the real root cause. Identify the violated invariant, state ownership/provenance, producer-to-consumer call chain, and every affected full/incremental/read/write path.
 5. Apply the **Repair-depth gate** — default to Product Development and repair the invariant-owning boundary, including coordinated multi-layer changes when required. Use Operational Stabilization only for an explicit production/availability/frozen-scope constraint; containment must be reversible and leave the structural repair visibly unresolved.
 6. Implement the smallest semantically complete repair; dependency count increases validation duty but cannot veto the correct boundary. Avoid unrelated cleanup.
 7. Inspect direct and indirect consumers plus changed contracts, data compatibility, shared state/config, events, and async ordering. Resolve any unknown that could invalidate the fix.
-8. Run the same acceptance check to green and the smallest relevant regression across every affected path. Escalate to runtime/release evidence only when the changed behavior requires it.
+8. Run the same acceptance check to green and the smallest relevant regression across every affected path. When user interaction, entry-point wiring, permissions, or a later effect is not observable in the lower-level check, replay the original scenario through the user's entry and verify its reported effect on the current artifact. If the required runtime, identity, or data is unavailable, keep that scenario unverified. Escalate to broader runtime/release evidence only when the changed behavior requires it.
 9. Run the [Task Closure Protocol](task-closure.md).
 
 After three failed approaches, stop and report the attempts and false premise instead of trying a fourth variant.
 
 ## Completion Check
 
-- Classification and design basis are explicit.
-- The failing check reproduced the real defect before code changed and passes afterward.
-- Invariant ownership, call chain, all affected paths, direct/indirect impact, compatibility, and residual uncertainty were inspected.
-- Product Development vs Operational Stabilization was selected from task evidence, not implementation convenience.
+- For a repair, classification and design basis are explicit, the failing check reproduced the real defect before code changed and passes afterward, and repair depth was selected from task evidence.
+- For a no-change result, the original scenario passed on the identified current artifact under the reported conditions; source inspection alone does not establish this result. Steps specific to a repair do not apply.
+- Inspection covered the affected path and residual uncertainty; a repair additionally accounts for invariant ownership, direct/indirect impact, and compatibility.
 - No type/flow/state/invariant change was smuggled through Bug Fix.
 - Relevant user decisions were replayed, and any normative drift was resolved with the user before continuing.
 - Any missing product question was grounded in a concrete flow and an evidence-backed working conclusion before the user was asked to compare or correct it.
 - The decision-relevant implementation path was closed; distinct flows were traced independently and no interface, write target, branch protection, call order, or state progression was presented as a user choice.
-- Task Closure ran once after the integrated fix, and any proven lesson was reported, not persisted into the target project.
+- Task Closure ran once after the integrated fix; a no-change investigation follows its read-only exemption. Any proven lesson was reported, not persisted into the target project.
 
 ## Final Report
 
-Report classification/design basis, root cause, change, red→green verification, blast radius, and uncovered risk. Do not narrate the whole diff.
+For a repair, report classification/design basis, root cause, change, red→green verification, blast radius, and uncovered risk. For a no-change or blocked result, report the current-version scenario evidence and its limits without claiming a repair. Do not narrate the whole diff.
+
+For every result, apply [Evidence Scope](task-closure.md#evidence-scope); reading that section does not activate Closure for a read-only investigation.

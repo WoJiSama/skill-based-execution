@@ -23,13 +23,13 @@ vendor:
 adapted:
   - path: workflows/task-execution.md
     source: templates/skill/workflows/task-execution.md
-    notes: stateless — dropped composite-plan handoff, verified-failure durable handoff, domain routing, subagent workflow refs
+    notes: stateless — dropped composite-plan handoff, durable failure handoff, domain routing, subagent workflow refs; conditional executor preflight and boundary-scoped recovery
   - path: workflows/task-closure.md
     source: templates/skill/workflows/task-closure.md
-    notes: stateless — dropped rule-update/plan-knowledge-closure/maintain-docs machinery; AAR reports lessons instead of persisting
+    notes: stateless — dropped rule-update/plan-knowledge-closure/maintain-docs machinery; AAR reports lessons instead of persisting; evidence retains executor and substitution limits
   - path: workflows/fix-bug.md
     source: templates/skill/workflows/fix-bug.md
-    notes: dropped domain routing and business-truth/verified-failure record inputs; classification INSUFFICIENT_BUSINESS_CONTEXT renamed to INSUFFICIENT_CONTEXT
+    notes: dropped domain routing and durable record inputs; INSUFFICIENT_CONTEXT classification; current-version no-change exit and conditional original-entry verification
   - path: workflows/change-managed.md
     source: templates/skill/workflows/change-managed.md
     notes: dropped domain routing, edit-templates, permission-model refs
@@ -69,4 +69,5 @@ local:
   - scripts/smoke-test.sh
   - scripts/check-conformance.sh
   - scripts/upstream-status.sh
+  - scripts/test-upstream-status.sh
   - scripts/install.sh
